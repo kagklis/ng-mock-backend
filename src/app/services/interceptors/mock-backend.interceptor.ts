@@ -11,7 +11,7 @@ import { PANDAS } from '../../model/data';
 
 @Injectable()
 export class MockBackendInterceptor implements HttpInterceptor {
-  private readonly MOCKED_RESPONSE = of(
+  private readonly MOCK_RESPONSE = of(
     new HttpResponse({
       status: 200,
       statusText: 'OK',
@@ -25,7 +25,7 @@ export class MockBackendInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     if (req.method === 'GET' && req.url.endsWith('v1/pandas')) {
       console.log('[MockBackendInterceptor] - Returning mock data.');
-      return this.MOCKED_RESPONSE;
+      return this.MOCK_RESPONSE;
     } else {
       return next.handle(req);
     }
